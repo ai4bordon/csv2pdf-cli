@@ -1,62 +1,62 @@
-# Implementation Plan: [FEATURE]
+# План реализации: [FEATURE]
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Ветка**: `[###-feature-name]` | **Дата**: [DATE] | **Спека**: [link]  
+**Вход**: Спецификация фичи из `/specs/[###-feature-name]/spec.md`
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+**Примечание**: Файл заполняется командой `/speckit.plan`. Рабочий процесс см. в `.specify/templates/commands/plan.md` (если есть).
 
-## Summary
+## Краткое описание
 
-[Extract from feature spec: primary requirement + technical approach from research]
+[Ключевое требование из спеки + выбранный технический подход]
 
-## Technical Context
+## Технический контекст
 
 <!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
+  Замените содержимое на конкретные детали проекта.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Язык/версия**: [например, Python 3.10+]  
+**Основные зависимости**: [например, weasyprint или другой HTML→PDF]  
+**Хранилище**: [если нужно, иначе N/A]  
+**Тестирование**: [например, pytest или ручные проверки]  
+**Целевая платформа**: [например, Linux/Windows/macOS]  
+**Тип проекта**: [single/web/mobile]  
+**Цели по производительности**: [если применимо]  
+**Ограничения**: [например, без фреймворков, только CLI]  
+**Масштаб/объем**: [при необходимости]
 
-## Constitution Check
+## Проверка конституции
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+*GATE: нужно пройти до начала исследований. Повторная проверка после дизайна.*
 
-[Gates determined based on constitution file]
+- Дефолтные пути работают: `data/input.csv`, `templates/template.html`, `output/`.
+- CSV читается стандартной `csv`, поддерживаются `,` и `;`, поля `product|price|qty` обязательны.
+- Шаблон использует `{{ placeholder }}`, сумма считается в Python и передается готовой.
+- HTML→PDF библиотека устанавливается через `pip` без сложных системных зависимостей; при необходимости описана установка системного бинарника.
+- Документация, вывод CLI и комментарии на русском.
+- Структура проекта: `main.py`, `templates/`, `data/`, `output/` (создается автоматически).
 
-## Project Structure
+## Структура проекта
 
-### Documentation (this feature)
+### Документация (эта фича)
 
 ```text
 specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
-└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+├── plan.md              # Этот файл (вывод /speckit.plan)
+├── research.md          # Фаза 0 (вывод /speckit.plan)
+├── data-model.md        # Фаза 1 (вывод /speckit.plan)
+├── quickstart.md        # Фаза 1 (вывод /speckit.plan)
+├── contracts/           # Фаза 1 (вывод /speckit.plan)
+└── tasks.md             # Фаза 2 (вывод /speckit.tasks, не создается /speckit.plan)
 ```
 
-### Source Code (repository root)
+### Исходники (корень репозитория)
 <!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
+  Замените дерево на конкретную структуру для проекта. Уберите неиспользуемые опции.
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+# [УДАЛИТЬ ЕСЛИ НЕ НУЖНО] Вариант 1: одиночный проект (по умолчанию)
 src/
 ├── models/
 ├── services/
@@ -68,7 +68,7 @@ tests/
 ├── integration/
 └── unit/
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+# [УДАЛИТЬ ЕСЛИ НЕ НУЖНО] Вариант 2: веб (frontend + backend)
 backend/
 ├── src/
 │   ├── models/
@@ -83,22 +83,20 @@ frontend/
 │   └── services/
 └── tests/
 
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
+# [УДАЛИТЬ ЕСЛИ НЕ НУЖНО] Вариант 3: mobile + API
 api/
-└── [same as backend above]
+└── [аналог backend выше]
 
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+ios/ или android/
+└── [модули, UI-флоу, платформенные тесты]
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Выбор структуры**: [Опишите выбранную структуру и реальные пути]
 
-## Complexity Tracking
+## Учет сложности
 
-> **Fill ONLY if Constitution Check has violations that must be justified**
+> **Заполняйте только если есть нарушения конституции, требующие обоснования**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| Нарушение | Почему нужно | Более простой вариант и почему не подходит |
+|-----------|--------------|--------------------------------------------|
+| [пример: доп. сервис] | [зачем] | [почему нельзя проще] |

@@ -1,0 +1,28 @@
+# Общие артефакты
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.DS_Store
+Thumbs.db
+
+# Служебные каталоги agenta
+.codex/
+.specify/
+specs/
+# Виртуальные окружения
+venv/
+.venv/
+
+# Инструменты IDE
+.idea/
+.vscode/
+
+# Артефакты упаковки/сборки
+*.egg-info/
+dist/
+build/
+
+# Выходные файлы
+output/*.pdf

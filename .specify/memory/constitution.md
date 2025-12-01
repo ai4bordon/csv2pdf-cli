@@ -1,50 +1,42 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Отчет о синхронизации
+- Версия: N/A → 1.0.0
+- Измененные принципы: базовый набор сформирован впервые
+- Добавленные разделы: Основные принципы, Технологические ограничения, Процесс разработки и качество, Управление
+- Удаленные разделы: нет
+- Шаблоны: ✅ .specify/templates/plan-template.md, ✅ .specify/templates/spec-template.md, ✅ .specify/templates/tasks-template.md
+- Отложенные TODO: нет
+-->
 
-## Core Principles
+# Конституция проекта: CLI PDF Generator
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+## Основные принципы
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### I. Минималистичный CLI
+Команда запускает всю цепочку: чтение CSV → подстановка в HTML → рендер PDF → сохранение в `output/` → опциональное открытие файла. Дефолтные пути (`data/input.csv`, `templates/template.html`, `output/`) обязаны работать без флагов, если файлы есть.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Надежность данных CSV
+CSV читается стандартной `csv` с поддержкой запятой и точки с запятой как разделителей. Проверяем наличие колонок `product`, `price`, `qty`, пустой файл и отсутствующий путь. Сообщения об ошибках человеко-понятные; расширение схемы (дополнительные поля) не ломает базовый сценарий.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### III. Контроль шаблона и суммы
+HTML-шаблон использует плейсхолдеры вида `{{ placeholder }}` и цикл по позициям. Сумма по всем позициям считается в Python, в шаблон передаем готовое число. По умолчанию используется `templates/template.html`; структура шаблона документируется примером.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### IV. Рендер PDF и зависимости
+Рендер вынесен в отдельную функцию: загрузка шаблона → заполнение данными → конвертация в PDF → запись в `output/` с именем `check_YYYYMMDD_HHMMSS.pdf`. Используется библиотека HTML→PDF, которую легко ставить через `pip` (рекомендуем `weasyprint`); если нужен системный бинарник, выводим инструкцию по установке.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### V. UX и прозрачность
+Все сообщения и документация — на русском. Ошибки выводятся без полотна трассбеков (кроме явного режима отладки). Комментарии в коде поясняют ключевые блоки. Структура проекта проста и читабельна, без лишней магии и фреймворков.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Технологические ограничения
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Python 3.10+. Все зависимости перечислены в `requirements.txt` с версиями. Только CLI-скрипт без фреймворков. Используем `venv` по умолчанию; установка через `pip install -r requirements.txt`. Директории: `main.py`, `templates/`, `data/`, `output/` (создается при генерации). Разрешены сторонние библиотеки для HTML→PDF, предпочитаем те, что ставятся `pip`-ом без сложных системных сборок.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Процесс разработки и качество
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Стартовая команда работает без аргументов при наличии дефолтных файлов, иначе выводит подсказки. CLI на `argparse` с флагами `--input/-i`, `--template/-t`, `--output-dir/-o`, `--open`. Обработка ошибок обязательна: отсутствующие пути, пустой CSV, неподдерживаемый разделитель, проблемы рендера. Комментарии и подсказки на русском, с кратким обоснованием выбора библиотеки HTML→PDF. Поведение при расширении CSV (новые поля) должно оставаться совместимым.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+## Управление
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Эта конституция главнее любых иных договоренностей. Поправки требуют фиксации причины, правки версий и дат, синхронизации шаблонов план/спека/таски. Версионирование по SemVer: мажор — несовместимые изменения принципов/процесса; минор — новые принципы/разделы или заметные усиления требований; патч — формулировки и уточнения без изменения смысла. Каждое ревью или генерация документа обязаны проверять соответствие принципам и технологическим ограничениям. Даты в ISO (YYYY-MM-DD).
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-01 | **Last Amended**: 2025-12-01

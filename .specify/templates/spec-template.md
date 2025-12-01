@@ -1,115 +1,104 @@
-# Feature Specification: [FEATURE NAME]
+# Спецификация фичи: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
-**Input**: User description: "$ARGUMENTS"
+**Ветка фичи**: `[###-feature-name]`  
+**Создано**: [DATE]  
+**Статус**: Draft  
+**Вход**: Описание пользователя: "$ARGUMENTS"
 
-## User Scenarios & Testing *(mandatory)*
+## Пользовательские сценарии и тестирование *(обязательно)*
 
 <!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
+  Истории приоритизируются (P1, P2, P3...). Каждая история должна быть
+  независимой: ее можно разработать, протестировать и показать отдельно.
 -->
 
-### User Story 1 - [Brief Title] (Priority: P1)
+### User Story 1 - [краткий заголовок] (Priority: P1)
 
-[Describe this user journey in plain language]
+[Опишите сценарий простым языком]
 
-**Why this priority**: [Explain the value and why it has this priority level]
+**Почему этот приоритет**: [ценность и причина приоритета]
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+**Независимый тест**: [как проверить эту историю отдельно]
 
-**Acceptance Scenarios**:
+**Сценарии приемки**:
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+1. **Дано** [начальное состояние], **Когда** [действие], **Тогда** [ожидание]
+2. **Дано** [начальное состояние], **Когда** [действие], **Тогда** [ожидание]
 
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
+### User Story 2 - [краткий заголовок] (Priority: P2)
 
-[Describe this user journey in plain language]
+[Опишите сценарий]
 
-**Why this priority**: [Explain the value and why it has this priority level]
+**Почему этот приоритет**: [ценность]
 
-**Independent Test**: [Describe how this can be tested independently]
+**Независимый тест**: [как проверить отдельно]
 
-**Acceptance Scenarios**:
+**Сценарии приемки**:
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
----
-
-### User Story 3 - [Brief Title] (Priority: P3)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+1. **Дано** [начальное состояние], **Когда** [действие], **Тогда** [ожидание]
 
 ---
 
-[Add more user stories as needed, each with an assigned priority]
+### User Story 3 - [краткий заголовок] (Priority: P3)
 
-### Edge Cases
+[Опишите сценарий]
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
+**Почему этот приоритет**: [ценность]
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+**Независимый тест**: [как проверить отдельно]
 
-## Requirements *(mandatory)*
+**Сценарии приемки**:
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
+1. **Дано** [начальное состояние], **Когда** [действие], **Тогда** [ожидание]
 
-### Functional Requirements
+---
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+[Добавьте больше историй при необходимости, каждой присвойте приоритет]
 
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
-## Success Criteria *(mandatory)*
+### Крайние случаи
 
 <!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
+  Заполните реальными граничными условиями и ошибочными сценариями.
 -->
 
-### Measurable Outcomes
+- Что происходит, если [граничное условие]?
+- Как система обрабатывает [ошибочную ситуацию]?
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+## Требования *(обязательно)*
+
+<!--
+  Заполните конкретными функциональными требованиями.
+-->
+
+### Функциональные требования
+
+- **FR-001**: Система ДОЛЖНА [конкретная возможность]
+- **FR-002**: Система ДОЛЖНА [конкретная возможность]  
+- **FR-003**: Пользователь ДОЛЖЕН иметь возможность [действие]
+- **FR-004**: Система ДОЛЖНА [требование к данным]
+- **FR-005**: Система ДОЛЖНА [поведение]
+
+*Пример, как помечать неясность:*
+
+- **FR-006**: Система ДОЛЖНА аутентифицировать через [НУЖНА УТОЧНЕНИЕ: метод?]
+- **FR-007**: Система ДОЛЖНА хранить данные [НУЖНА УТОЧНЕНИЕ: срок?]
+
+### Ключевые сущности *(если есть данные)*
+
+- **[Сущность 1]**: [что это, ключевые атрибуты без реализации]
+- **[Сущность 2]**: [описание, связи]
+
+## Критерии успеха *(обязательно)*
+
+<!--
+  Определите измеримые критерии успеха. Они должны быть технически нейтральны.
+-->
+
+### Измеримые результаты
+
+- **SC-001**: [метрика, например, "Пользователь создает документ < 2 мин"]
+- **SC-002**: [метрика, например, "Система обрабатывает 1000 строк CSV"]
+- **SC-003**: [метрика удовлетворенности]
+- **SC-004**: [бизнес-метрика, например, снижение ошибок ввода на X%]

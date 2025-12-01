@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Чек покупок</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .header { text-align: center; margin-bottom: 16px; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { border: 1px solid #ccc; padding: 8px; font-size: 14px; }
+    .table th { background: #f5f5f5; text-align: left; }
+    .total { text-align: right; margin-top: 12px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Сводный чек</h2>
+    <p>Дата формирования: {{ generated_at }}</p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Товар</th>
+        <th>Цена</th>
+        <th>Кол-во</th>
+        <th>Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+      <tr>
+        <td>{{ item.product }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.qty }}</td>
+        <td>{{ item.line_total }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="total">
+    Итоговая сумма: {{ total }}
+  </div>
+</body>
+</html>
